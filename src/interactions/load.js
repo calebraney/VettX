@@ -22,7 +22,7 @@ export const load = function (gsapContext) {
   const STAGGER = 'stagger';
   //tween options
   const POSITION = 'data-ix-load-position'; // sequential by default, use "<" to start tweens together
-  const DEFAULT_STAGGER = '<0.2';
+  const DEFAULT_STAGGER = '<0.3';
 
   //get itema
   const items = gsap.utils.toArray(`[${ATTRIBUTE}]`);
@@ -30,6 +30,7 @@ export const load = function (gsapContext) {
 
   const tl = gsap.timeline({
     paused: true,
+    // delay: 0,
     defaults: {
       ease: 'power1.out',
       duration: 0.8,
@@ -49,11 +50,11 @@ export const load = function (gsapContext) {
     const position = attr('<', item.getAttribute(POSITION));
     // split text and animate it
     SplitText.create(item, {
-      type: 'lines',
-      autoSplit: false,
+      type: 'words',
+      //   autoSplit: true,
       onSplit: (self) => {
         return tl.from(
-          self.lines,
+          self.words,
           {
             y: '2rem',
             opacity: 0,
