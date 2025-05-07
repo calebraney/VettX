@@ -81,6 +81,7 @@ export const scrollIn = function (gsapContext) {
     if (options.stagger === 'large') {
       varsTo.stagger = { each: EASE_LARGE, from: 'start' };
     }
+
     // putting tween together
     const tween = tl.fromTo(item, varsFrom, varsTo);
     return tween;
@@ -95,15 +96,20 @@ export const scrollIn = function (gsapContext) {
     SplitText.create(item, {
       type: 'words', // 'chars, words, lines
       autoSplit: true, //have it auto adjust based on width
-      mask: true,
+      // mask: 'lines',
       onSplit(self) {
         // animation to run for the item
         const tl = scrollInTL(item);
-        return (tween = defaultTween(self.words, tl, { stagger: 'small' })); //   duration: 1,
-        //   y: 100,
-        //   autoAlpha: 0,
-        //   stagger: 0.2,
-        // });
+
+        tween = defaultTween(self.words, tl, { stagger: 'small' });
+        //create callback function to revert text
+        const revertText = function (self) {
+          self.revert();
+        };
+        //revert text on animation complete
+        tween.eventCallback('onComplete', revertText, [self]);
+        //return tween for gsap to be able to manage it smartly
+        return tween;
       },
     });
   };

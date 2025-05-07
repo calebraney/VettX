@@ -1,7 +1,9 @@
 import { attr } from './utilities';
-import { scrollIn } from './interactions/scroll-in';
-import { marquee } from './interactions/marquee';
 import { accordion } from './interactions/accordion';
+import { initLenis } from './interactions/lenis';
+import { load } from './interactions/load';
+import { marquee } from './interactions/marquee';
+import { scrollIn } from './interactions/scroll-in';
 
 document.addEventListener('DOMContentLoaded', function () {
   // Comment out for production
@@ -32,8 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
       (gsapContext) => {
         let { isMobile, isTablet, isDesktop, reduceMotion } = gsapContext.conditions;
         //functional interactions
+        lenis = initLenis();
         accordion(gsapContext);
         marquee(gsapContext);
+        load(gsapContext);
         //conditional interactions
         if (!reduceMotion) {
           scrollIn(gsapContext);
