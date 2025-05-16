@@ -1,5 +1,6 @@
 import { attr } from './utilities';
 import { accordion } from './interactions/accordion';
+import { countUp } from './interactions/count-up';
 import { initLenis } from './interactions/lenis';
 import { load } from './interactions/load';
 import { marquee } from './interactions/marquee';
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //functional interactions
         lenis = initLenis();
         accordion(gsapContext);
+        countUp(gsapContext);
         marquee(gsapContext);
         load(gsapContext);
         //conditional interactions

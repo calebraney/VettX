@@ -24,6 +24,7 @@
     "serve": "^14.1.2"
   },
   "dependencies": {
-    "@studio-freight/lenis": "^1.0.42"
+    "@studio-freight/lenis": "^1.0.42",
+    "countup.js": "^2.8.2"
   }
 }
