@@ -5,6 +5,7 @@ import { initLenis } from './interactions/lenis';
 import { load } from './interactions/load';
 import { marquee } from './interactions/marquee';
 import { scrollIn } from './interactions/scroll-in';
+import { videoPlyr } from './interactions/video-plyr';
 
 document.addEventListener('DOMContentLoaded', function () {
   // Comment out for production
@@ -44,6 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!reduceMotion) {
           scrollIn(gsapContext);
         }
+        //setup video players
+        const [players, components] = [videoPlyr()];
       }
     );
   };

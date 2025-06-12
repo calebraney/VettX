@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
-    "countup.js": "^2.8.2"
+    "countup.js": "^2.8.2",
+    "plyr": "^3.7.8"
   }
 }
