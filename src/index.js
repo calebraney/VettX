@@ -4,7 +4,7 @@ import { countUp } from './interactions/count-up';
 import { initLenis } from './interactions/lenis';
 import { load } from './interactions/load';
 import { marquee } from './interactions/marquee';
-import { mouseover } from './interactions/mouse-over';
+import { mouseOver } from './interactions/mouse-over';
 import { scrollIn } from './interactions/scroll-in';
 import { videoPlyr } from './interactions/video-plyr';
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //conditional interactions
         if (!reduceMotion) {
           scrollIn(gsapContext);
-          mouseover(gsapContext);
+          mouseOver(gsapContext);
         }
         //setup video players
         const [players, components] = [videoPlyr()];
