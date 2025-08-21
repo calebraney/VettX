@@ -1,5 +1,6 @@
 import { attr } from './utilities';
 import { accordion } from './interactions/accordion';
+import { tabsAutoplay } from './interactions/autoplay-tabs';
 import { countUp } from './interactions/count-up';
 import { initLenis } from './interactions/lenis';
 import { load } from './interactions/load';
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         countUp(gsapContext);
         marquee(gsapContext);
         load(gsapContext);
+        tabsAutoplay(gsapContext);
         //conditional interactions
         if (!reduceMotion) {
           scrollIn(gsapContext);
