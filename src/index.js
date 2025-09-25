@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       //utility funciton to get the current day and format results
       function getDateInfo() {
-        // const today = new Date();
-        const today = new Date('2025-10-30T03:24:00');
+        const today = new Date();
 
         // 2. Format current Month and Year
         const monthOutput = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
