@@ -11,7 +11,7 @@ import { videoPlyr } from './interactions/video-plyr';
 
 document.addEventListener('DOMContentLoaded', function () {
   // Comment out for production
-  console.log('Local Script');
+  // console.log('Local Script');
   // register gsap plugins if available
   if (gsap.ScrollTrigger !== undefined) {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +22,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //////////////////////////////
   //Global Variables
+
+  const contactCalendar = function () {
+    const WRAP = '[data-ix-cal="wrap"]';
+    const DATE = '[data-ix-cal="date"]';
+    const DAY = '[data-ix-cal="day"]';
+    const MONTH = '[data-ix-cal="month"]';
+
+    //elements
+    const wraps = [...document.querySelectorAll(WRAP)];
+    if (wraps.length === 0) return;
+
+    wraps.forEach((wrap) => {
+      //get items
+      const month = wrap.querySelector(MONTH);
+      const dates = [...wrap.querySelectorAll(DATE)];
+      const days = [...wrap.querySelectorAll(DAY)];
+      //guard clause
+      if (!month) return;
+
+      //utility funciton to get the current day and format results
+      function getDateInfo() {
+        // const today = new Date();
+        const today = new Date('2025-10-30T03:24:00');
+
+        // 2. Format current Month and Year
+        const monthOutput = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+
+        // Arrays to store results
+        const datesOutput = [];
+        const daysOutput = [];
+
+        // Weekday names (3-letter format)
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+        // 3 & 4. Loop through today + next 4 days
+        for (let i = 0; i < 5; i++) {
+          const date = new Date(today);
+          date.setDate(today.getDate() + i);
+
+          // Day of the month
+          datesOutput.push(date.getDate().toString());
+
+          // Day of the week
+          daysOutput.push(dayNames[date.getDay()]);
+        }
+
+        return { monthOutput, datesOutput, daysOutput };
+      }
+
+      // get object with results
+      const result = getDateInfo();
+
+      //set days and months in the UI
+      month.textContent = result?.monthOutput;
+      dates.forEach((item, i) => {
+        item.textContent = result?.datesOutput[i];
+      });
+      days.forEach((item, i) => {
+        item.textContent = result?.daysOutput[i];
+      });
+    });
+  };
 
   //////////////////////////////
   //Control Functions on page load
@@ -44,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         marquee(gsapContext);
         load(gsapContext);
         tabsAutoplay(gsapContext);
+        contactCalendar(gsapContext);
         //conditional interactions
         if (!reduceMotion) {
           scrollIn(gsapContext);
